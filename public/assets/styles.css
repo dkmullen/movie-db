@@ -1,0 +1,29 @@
+body {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+footer {
+  background: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;;
+}
+
+footer .footer-content {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer .footer-content a {
+  color: white;
+}
+
+footer .footer-content a:hover {
+  color: lightgray;
+}
