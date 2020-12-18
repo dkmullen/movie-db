@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MoviesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,11 @@ Route::get('messages', function () {
 Route::get('friends', function () {
   return view('friends');
 });
+
+// Route::get('movies', function () {
+//   return view('movies');
+// });
+
+Route::get('/movies', [MoviesController::class, 'index']); // getAll
+Route::get('/movies/create', [MoviesController::class, 'create']);
+Route::post('/movies', [MoviesController::class, 'store']);

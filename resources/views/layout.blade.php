@@ -21,6 +21,9 @@
     <a class="{{ Request::path() === 'friends' ? 'item active' : 'item'}}" href="/friends">
       Friends
     </a>
+    <a class="{{ Request::path() === 'movies' ? 'item active' : 'item'}}" href="/movies">
+      Movies
+    </a>
     <div class="right menu">
       <a class="ui item">
         Logout
@@ -32,7 +35,8 @@
   
   <footer>
     <div class="footer-content">
-      <a href="/">Home</a> | <a href="/messages">Messages</a> | <a href="friends">Friends</a>
+      <a href="/">Home</a> | <a href="/messages">Messages</a> 
+        | <a href="friends">Friends</a> | <a href="movies">Movies</a>
     </div>
   </footer>
 

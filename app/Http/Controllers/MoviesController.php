@@ -14,7 +14,10 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
+      // die('Here');
+      $movies = Movie::latest()->get();
+      // die($movies);
+      return view('movies.index', ['movies' => $movies]);
     }
 
     /**
@@ -24,7 +27,7 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -33,9 +36,14 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+      $this->validateMovie();
+      $movie = new Movie(request(['title', 'year', 'comments']));
+      $movie->save();
+      $movies = Movie::latest()->get();
+      return view('movies.index', ['movies' => $movies]);
+        
     }
 
     /**
@@ -81,5 +89,13 @@ class MoviesController extends Controller
     public function destroy(Movie $movie)
     {
         //
+    }
+
+    protected function validateMovie()
+    {
+      return request()-> validate([
+        'title' => ['required', 'min:2', 'max:255'],
+        'year' => ['required']
+      ]);
     }
 }
