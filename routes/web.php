@@ -31,5 +31,10 @@ Route::get('friends', function () {
 // });
 
 Route::get('/movies', [MoviesController::class, 'index']); // getAll
-Route::get('/movies/create', [MoviesController::class, 'create']);
+Route::get('/movies/create', [MoviesController::class, 'create'])
+  ->middleware('auth');
 Route::post('/movies', [MoviesController::class, 'store']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

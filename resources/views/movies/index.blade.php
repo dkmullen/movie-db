@@ -10,10 +10,15 @@
   @endforelse
 
 </div>
+
+@auth
 <a href="/movies/create">
-<button class="ui secondary button">
-  Add
-</button>
+  <button class="ui secondary button">
+    Add
+  </button>
 </a>
+@else
+Register or sign in to add movies
+@endauth
 
 @endsection

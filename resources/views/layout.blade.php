@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   <link rel="stylesheet" href="/assets/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" /> -->
-  <title>Document</title>
+  <title>Laravel/SemanticUI</title>
 </head>
 <body>
 <div class="ui secondary pointing menu">
@@ -24,10 +23,28 @@
     <a class="{{ Request::path() === 'movies' ? 'item active' : 'item'}}" href="/movies">
       Movies
     </a>
+
     <div class="right menu">
-      <a class="ui item">
-        Logout
-      </a>
+      @if (Route::has('login'))
+        @auth
+      <span class="ui item">{{ Auth::user()->name }}: 
+        <a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            {{ __(' Logout') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+      </span>
+        @else
+            <a href="{{ route('login') }}" class="ui item">Log In</a>
+
+          @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="ui item">Register</a>
+          @endif
+        @endauth
+      @endif
     </div>
   </div>
 
