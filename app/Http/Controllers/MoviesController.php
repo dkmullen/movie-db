@@ -54,7 +54,7 @@ class MoviesController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+      // return view('movies.show', ['movie' => $movie]);
     }
 
     /**
@@ -65,7 +65,7 @@ class MoviesController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+      return view('movies.edit', ['movie' => $movie]);
     }
 
     /**
@@ -75,9 +75,11 @@ class MoviesController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Movie $movie)
     {
-        //
+      // dump(request()->all());
+      $movie->update($this->validateMovie());
+      return redirect($movie->path());
     }
 
     /**
@@ -95,7 +97,8 @@ class MoviesController extends Controller
     {
       return request()-> validate([
         'title' => ['required', 'min:2', 'max:255'],
-        'year' => ['required']
+        'year' => 'required',
+        'comments' => 'required'
       ]);
     }
 }

@@ -38,7 +38,7 @@
         </form>
       </span>
         @else
-            <a href="{{ route('login') }}" class="ui item">Log In</a>
+            <a href="{{ route('login') }}" class="ui item">Sign In</a>
 
           @if (Route::has('register'))
             <a href="{{ route('register') }}" class="ui item">Register</a>

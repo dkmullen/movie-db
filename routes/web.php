@@ -30,11 +30,12 @@ Route::get('friends', function () {
 //   return view('movies');
 // });
 
-Route::get('/movies', [MoviesController::class, 'index']); // getAll
+Route::get('/movies', [MoviesController::class, 'index'])->name('movies'); // getAll
 Route::get('/movies/create', [MoviesController::class, 'create'])
   ->middleware('auth');
 Route::post('/movies', [MoviesController::class, 'store']);
+Route::get('/movies/{movie}/edit', [MoviesController::class, 'edit'])->name('movies.edit'); // getOne
+Route::put('/movies/{movie}', [MoviesController::class, 'update']);
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

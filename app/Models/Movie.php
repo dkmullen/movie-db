@@ -9,5 +9,8 @@ class Movie extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'year', 'comments'];
-
+    
+    public function path() {
+      return route('movies');
+    }
 }

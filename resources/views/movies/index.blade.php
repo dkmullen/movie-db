@@ -5,7 +5,11 @@
 <div class="ui segment">
   @forelse ($movies as $movie)
 
+  @auth
+  <p><a href="{{ route('movies.edit', $movie)}}">{{ $movie->title }}</a> - {{ $movie->year }} - {{ $movie->comments }}</p>
+  @else
   <p>{{ $movie->title }} - {{ $movie->year }} - {{ $movie->comments }}</p>
+  @endauth
   @empty <p>No movies yet.</p>
   @endforelse
 
@@ -18,7 +22,8 @@
   </button>
 </a>
 @else
-Register or sign in to add movies
+<a href="{{ route('register') }}">Register</a> or <a href="{{ route('login') }}" class="ui item">sign In</a>
+to add movies
 @endauth
 
 @endsection
