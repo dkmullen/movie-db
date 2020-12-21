@@ -5,16 +5,11 @@
   <div class="form-medium">
     <div class="ui fluid card">
     <div class="content">
-      <div class="header">{{ __('Reset Password') }}</div>
+      <div class="header">{{ __('Sign up for our worthless but never-to-be-sent newsletter') }}</div>
     </div>
 
     <div class="content">
-    @if (session('status'))
-      <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-      </div>
-    @endif
-      <form class="ui form" method="POST" action="{{ route('password.email') }}">
+      <form class="ui form" method="POST" action="/email">
         @csrf
 
         <div class="field">
@@ -28,9 +23,14 @@
         </div>
         <div>
           <button type="submit" class="ui secondary button">
-            {{ __('Send Password Reset Link') }}
+            {{ __('Submit') }}
           </button>
         </div>
+        @if (session('message'))
+        <div>
+          {{ session('message') }}
+        </div>
+        @endif
         </form>
       </div>
     </div>

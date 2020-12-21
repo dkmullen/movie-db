@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,8 @@ Route::get('messages', function () {
   return view('messages');
 });
 
-Route::get('friends', function () {
-  return view('friends');
+Route::get('email', function () {
+  return view('email');
 });
 
 // Route::get('movies', function () {
@@ -36,6 +37,10 @@ Route::get('/movies/create', [MoviesController::class, 'create'])
 Route::post('/movies', [MoviesController::class, 'store']);
 Route::get('/movies/{movie}/edit', [MoviesController::class, 'edit'])->name('movies.edit'); // getOne
 Route::put('/movies/{movie}', [MoviesController::class, 'update']);
+
+Route::post('/email', [EmailController::class, 'store']);
+
+
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

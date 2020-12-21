@@ -17,8 +17,8 @@
     <a class="{{ Request::path() === 'messages' ? 'item active' : 'item'}}" href="/messages">
       Messages
     </a>
-    <a class="{{ Request::path() === 'friends' ? 'item active' : 'item'}}" href="/friends">
-      Friends
+    <a class="{{ Request::path() === 'email' ? 'item active' : 'item'}}" href="/email">
+      Email
     </a>
     <a class="{{ Request::path() === 'movies' ? 'item active' : 'item'}}" href="/movies">
       Movies
@@ -53,7 +53,7 @@
   <footer>
     <div class="footer-content">
       <a href="/">Home</a> | <a href="/messages">Messages</a> 
-        | <a href="friends">Friends</a> | <a href="movies">Movies</a>
+        | <a href="email">Email</a> | <a href="movies">Movies</a>
     </div>
   </footer>
 
