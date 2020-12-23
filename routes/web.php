@@ -27,20 +27,12 @@ Route::get('email', function () {
   return view('email');
 });
 
-// Route::get('movies', function () {
-//   return view('movies');
-// });
-
-Route::get('/movies', [MoviesController::class, 'index'])->name('movies'); // getAll
-Route::get('/movies/create', [MoviesController::class, 'create'])
-  ->middleware('auth');
+Route::get('/movies', [MoviesController::class, 'index'])->name('movies');
+Route::get('/movies/create', [MoviesController::class, 'create'])->middleware('auth');
 Route::post('/movies', [MoviesController::class, 'store']);
-Route::get('/movies/{movie}/edit', [MoviesController::class, 'edit'])->name('movies.edit'); // getOne
+Route::get('/movies/{movie}/edit', [MoviesController::class, 'edit'])->name('movies.edit');
 Route::put('/movies/{movie}', [MoviesController::class, 'update']);
-
 Route::post('/email', [EmailController::class, 'store']);
-
-
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
