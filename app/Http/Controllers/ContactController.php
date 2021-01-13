@@ -8,6 +8,14 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exceptionp;
 
+// Load Composer's autoloader
+// require 'PHPMailer/vendor/autoload.php';
+require '../vendor/autoload.php';
+
+// /Users/dennis.mullen/Documents/movie-db/vendor/autoload.php
+// vendor/autoload.php
+// /Users/dennis.mullen/Documents/movie-db/app/Http/Controllers/ContactController.php
+
 class ContactController extends Controller
 {
     function index() {
@@ -19,7 +27,7 @@ class ContactController extends Controller
         $email = $request->email;
         $message = $request->message;
 
-        require 'PHPMailer/vendor/autoload.php';
+        // require 'PHPMailer/vendor/autoload.php';
         $mail = new PHPMailer(true);
         $mail->SMTPDebug = 0;
         $mail->isSMTP();
@@ -36,13 +44,13 @@ class ContactController extends Controller
         $mail->setFrom($email, (empty($name) ? 'Contact form' : $name));
         $mail->addAddress('dkmullen@gmail.com');
         $mail->addReplyTo($email, $name);
-        $mail->Subject = 'Contact form: ' . $subject;
+        // $mail->Subject = 'Contact form: ' . $subject;
         $mail->Body = "Contact form submission\n\n" . $message;
         $dt = $mail->send();
         if (!$dt) {
-            $msg .= 'Mailer Error: ' . $mail->ErrorInfo;
+            $msg = 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-            $msg .= 'Message sent!';
+            $msg = 'Message sent!';
         }
     }
 }
