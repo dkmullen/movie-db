@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -14,10 +15,15 @@ class MoviesController extends Controller
      */
     public function index()
     {
-      // die('Here');
-      $movies = Movie::latest()->get();
-      // die($movies);
-      return view('movies.index', ['movies' => $movies]);
+      // Show movies for a specific user, or show all
+      $showingAll = true;
+      if(request('user')) {
+        $movies = User::where('name', request('user'))->firstOrFail()->movies;
+        $showingAll = false;
+      } else {
+        $movies = Movie::latest()->get();
+      }
+      return view('movies.index', ['movies' => $movies, 'showingAll' => $showingAll]);
     }
 
     /**
@@ -40,6 +46,7 @@ class MoviesController extends Controller
     {
       $this->validateMovie();
       $movie = new Movie(request(['title', 'year', 'comments']));
+      $movie->user_id = 4; // hardcoded for now
       $movie->save();
       $movies = Movie::latest()->get();
       return view('movies.index', ['movies' => $movies]);
