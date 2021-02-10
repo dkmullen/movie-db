@@ -46,10 +46,11 @@ class MoviesController extends Controller
     {
       $this->validateMovie();
       $movie = new Movie(request(['title', 'year', 'comments']));
-      $movie->user_id = 4; // hardcoded for now
+      $movie->user_id = 1; // hardcoded for now
       $movie->save();
+      $showingAll = true;
       $movies = Movie::latest()->get();
-      return view('movies.index', ['movies' => $movies]);
+      return view('movies.index', ['movies' => $movies, 'showingAll' => $showingAll]);
         
     }
 
